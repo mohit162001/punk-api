@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import BeersList from './components/BeersList/BeersList';
+import SearchBox from './components/SearchBox/SearchBox';
 
 function App() {
 
     const [beersArray, setBeersArray] = useState([])
     let [phBeers, setPhBeers] = useState([])
     let [abvBeers, setAbvBeers] = useState([])
+    let [searchTerm, setSearchTerm] = useState('')
 
     phBeers = beersArray.filter(beer => {
         return beer.ph < 4;
@@ -16,12 +18,25 @@ function App() {
         return beer.abv > 13;
     })
 
+    searchTerm = beersArray.filter(beer => {
+        if(searchTerm == "") {
+            return beersArray;
+        } else if(beer.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+            return beersArray;
+        }
+    })
+
     const filterByPH =() => {
         setBeersArray(phBeers)
     }
     
     const filterByABV = () => {
         setBeersArray(abvBeers)
+    }
+
+    const handleSearch = (event) => {
+        setSearchTerm(event.target.value)
+        setBeersArray(searchTerm) 
     }
 
     useEffect(() => {
@@ -37,6 +52,7 @@ function App() {
 
   return (
     <div className="App">
+        <SearchBox handleSearch={handleSearch}/>
         <button onClick={filterByABV}>ABV</button>
         <button onClick={filterByPH}>PH</button>
         <BeersList beersArray={beersArray}/>
