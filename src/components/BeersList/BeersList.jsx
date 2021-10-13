@@ -7,13 +7,13 @@ const BeersList = (props) => {
     const {beersArray} = props
 
     const beersArrayJSX = beersArray.map(beer => {
-        return <BeersCard key={beer.id} name={beer.name} firstBrewed={beer.first_brewed} tagline={beer.tagline} ph={beer.ph} abv={beer.abv} />
+        return <BeersCard key={beer.id} img={beer.image_url} name={beer.name} firstBrewed={beer.first_brewed} tagline={beer.tagline} ph={beer.ph} abv={beer.abv} />
     })
 
     return (
-        <div>
+        <main className="main">
             {beersArrayJSX}
-        </div>
+        </main>
     )
 }
 

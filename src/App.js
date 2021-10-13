@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import BeersList from './components/BeersList/BeersList';
+import FiltersList from './components/FiltersList/FiltersList';
+import Header from './components/Header/Header';
+import Nav from './components/Nav/Nav';
 import SearchBox from './components/SearchBox/SearchBox';
 
 function App() {
@@ -15,13 +18,13 @@ function App() {
     })
 
     abvBeers = beersArray.filter(beer => {
-        return beer.abv > 13;
+        return beer.abv > 6;
     })
 
     searchTerm = beersArray.filter(beer => {
-        if(searchTerm == "") {
+        if(beer.name.toLowerCase().includes(searchTerm.toLowerCase())) {
             return beersArray;
-        } else if(beer.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+        } else if(searchTerm === "") {
             return beersArray;
         }
     })
@@ -48,13 +51,12 @@ function App() {
         })
     }, [])
 
-    console.log(beersArray)
-
   return (
     <div className="App">
+        <Nav />
+        <Header />
         <SearchBox handleSearch={handleSearch}/>
-        <button onClick={filterByABV}>ABV</button>
-        <button onClick={filterByPH}>PH</button>
+        <FiltersList filterByABV={filterByABV} filterByPH={filterByPH} />
         <BeersList beersArray={beersArray}/>
     </div>
   );

@@ -1,0 +1,29 @@
+.beers__card {
+    background-color: white;
+    border: 1px solid #9ca8bd;
+    border-radius: 5px;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    align-items: center;
+    align-content: center;
+    gap: 10px;
+    text-align: center;
+    color: #222831;
+
+    &__img {
+        height: 200px;
+        width: 150px;
+        object-fit: contain;
+    }
+
+    &__title {
+        color: #FFD369;
+    }
+
+    &__tagline {
+        color: #222831;
+        font-style: italic;
+    }
+}
