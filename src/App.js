@@ -38,8 +38,8 @@ function App() {
     }
 
     const handleSearch = (event) => {
-        setSearchTerm(event.target.value)
-        setBeersArray(searchTerm) 
+        const input = event.target.value.toLowerCase();
+        setSearchTerm(input);
     }
 
     useEffect(() => {
@@ -49,7 +49,7 @@ function App() {
             const beersObj = punkObj
             setBeersArray(beersObj)
         })
-    }, [])
+    }, [searchTerm])
 
   return (
     <div className="App">
