@@ -9,55 +9,32 @@ import SearchBox from './components/SearchBox/SearchBox';
 function App() {
 
     const [beersArray, setBeersArray] = useState([])
-    let [phBeers, setPhBeers] = useState([])
-    let [abvBeers, setAbvBeers] = useState([])
-    let [searchTerm, setSearchTerm] = useState('')
-
-    phBeers = beersArray.filter(beer => {
-        return beer.ph < 4;
-    })
-
-    abvBeers = beersArray.filter(beer => {
-        return beer.abv > 6;
-    })
-
-    searchTerm = beersArray.filter(beer => {
-        if(beer.name.toLowerCase().includes(searchTerm.toLowerCase())) {
-            return beersArray;
-        } else if(searchTerm === "") {
-            return beersArray;
-        }
-    })
-
-    const filterByPH =() => {
-        setBeersArray(phBeers)
-    }
+    const [searchTerm, setSearchTerm] = useState('')
     
-    const filterByABV = () => {
-        setBeersArray(abvBeers)
-    }
-
-    const handleSearch = (event) => {
-        setSearchTerm(event.target.value)
-        setBeersArray(searchTerm) 
-    }
-
     useEffect(() => {
         fetch('https://api.punkapi.com/v2/beers?per_page=80')
         .then(response => {return response.json()})
-        .then(punkObj => {
-            const beersObj = punkObj
+        .then(jsonObject => {
+            const beersObj = jsonObject;
             setBeersArray(beersObj)
         })
     }, [])
+
+    const handleInput = event => {
+        const inputValue = event.target.value.toLowerCase();
+        setSearchTerm(inputValue)
+    }
+
+    const searchResults = beersArray.filter(result => {
+        return result.name.toLowerCase().includes(searchTerm)
+    })
 
   return (
     <div className="App">
         <Nav />
         <Header />
-        <SearchBox handleSearch={handleSearch}/>
-        <FiltersList filterByABV={filterByABV} filterByPH={filterByPH} />
-        <BeersList beersArray={beersArray}/>
+        <SearchBox handleInput={handleInput} searchTerm={searchTerm}/>
+        <BeersList beersArray={searchResults}/>
     </div>
   );
 }
