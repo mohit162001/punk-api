@@ -3,11 +3,11 @@ import './SearchBox.scss'
 
 const SearchBox = (props) => {
 
-    const {searchTerm, handleSearch} = props
+    const {searchTerm, handleInput} = props
 
     return (
         <div className="searchBox">
-            <input type="text" value={searchTerm} onInput={handleSearch} placeholder="Start your search..."/>
+            <input type="text" value={searchTerm} onInput={handleInput} placeholder="Start your search..."/>
         </div>
     )
 }
