@@ -1,6 +1,6 @@
 {
   "name": "punk-api",
-  "homepage":"http://alessandrothedev.github.io/punk-api",
+  "homepage": "http://alessandrothedev.github.io/punk-api",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
