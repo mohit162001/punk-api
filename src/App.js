@@ -20,21 +20,45 @@ function App() {
         })
     }, [])
 
+    const [ph, setPh] = useState(false)
+    const [abv, setAbv] = useState(false)
+
+    const filterByPH = () => {
+        setPh(!ph)
+        beersArray.filter(beer => {
+            return beer.ph < 4;
+        })
+    }
+
+    const filterByABV = () => {
+        setAbv(!abv)
+        beersArray.filter(beer => {
+            return beer.abv > 6;
+        })
+    }
+
     const handleInput = event => {
         const inputValue = event.target.value.toLowerCase();
         setSearchTerm(inputValue)
-    }
 
-    const searchResults = beersArray.filter(result => {
-        return result.name.toLowerCase().includes(searchTerm)
-    })
+        if(searchTerm === "") {
+            return beersArray;
+        } else if (searchTerm !== "") {
+            const searchResults = beersArray.filter(result => {
+                return result.name.toLowerCase().includes(searchTerm)
+            })
+            setBeersArray(searchResults)
+         }
+    }
 
   return (
     <div className="App">
         <Nav />
         <Header />
         <SearchBox handleInput={handleInput} searchTerm={searchTerm}/>
-        <BeersList beersArray={searchResults}/>
+        <FiltersList filterByABV={filterByABV} filterByPH={filterByPH} />
+        <BeersList beersArray={beersArray} />
+        
     </div>
   );
 }
