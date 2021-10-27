@@ -10,6 +10,8 @@ function App() {
 
     const [beersArray, setBeersArray] = useState([])
     const [searchTerm, setSearchTerm] = useState('')
+    const [ph, setPh] = useState(false)
+    const [abv, setAbv] = useState(false)
     
     useEffect(() => {
         fetch('https://api.punkapi.com/v2/beers?per_page=80')
@@ -20,36 +22,36 @@ function App() {
         })
     }, [])
 
-    const [ph, setPh] = useState(false)
-    const [abv, setAbv] = useState(false)
-
     const filterByPH = () => {
         setPh(!ph)
-        beersArray.filter(beer => {
-            return beer.ph < 4;
-        })
     }
 
     const filterByABV = () => {
         setAbv(!abv)
-        beersArray.filter(beer => {
-            return beer.abv > 6;
-        })
     }
 
     const handleInput = event => {
         const inputValue = event.target.value.toLowerCase();
         setSearchTerm(inputValue)
-
-        if(searchTerm === "") {
-            return beersArray;
-        } else if (searchTerm !== "") {
-            const searchResults = beersArray.filter(result => {
-                return result.name.toLowerCase().includes(searchTerm)
-            })
-            setBeersArray(searchResults)
-         }
     }
+
+    const filterResults = beersArray.filter(result => {
+        let beerHasMatched = true;
+      
+        if (searchTerm) {
+          beerHasMatched = result.name.toLowerCase().includes(searchTerm);
+        }
+      
+        if (abv) {
+          beerHasMatched = beerHasMatched && result.abv > 6;
+        }
+      
+        if (ph) {
+          beerHasMatched = beerHasMatched && result.ph < 4;
+        }
+      
+        return beerHasMatched;
+      });
 
   return (
     <div className="App">
@@ -57,7 +59,7 @@ function App() {
         <Header />
         <SearchBox handleInput={handleInput} searchTerm={searchTerm}/>
         <FiltersList filterByABV={filterByABV} filterByPH={filterByPH} />
-        <BeersList beersArray={beersArray} />
+        <BeersList beersArray={filterResults} />
         
     </div>
   );
