@@ -1,5 +1,5 @@
-@use "../scss/variables" as *;
-@use "../scss/mixins" as *;
+@use "/src/scss/mixins" as *;
+@use "/src/scss/variables" as *;
 
 .main {
     display: grid;
