@@ -1,29 +1,43 @@
-.beers__card {
-    background-color: white;
-    border: 1px solid #9ca8bd;
-    border-radius: 20px;
-    padding: 20px;
-    display: grid;
-    grid-template-columns: 1fr;
-    justify-items: center;
-    align-items: center;
-    align-content: center;
-    gap: 10px;
-    text-align: center;
-    color: #222831;
+a {
+    text-decoration: none;
 
-    &__img {
-        height: 200px;
-        width: 150px;
-        object-fit: contain;
-    }
-
-    &__title {
-        color: #FFD369;
-    }
-
-    &__tagline {
+    .beers__card {
+        background-color: white;
+        border: 1px solid #9ca8bd;
+        border-radius: 20px;
+        padding: 20px 10px;
+        display: grid;
+        grid-template-columns: 1fr;
+        justify-items: center;
+        align-items: center;
+        align-content: center;
+        gap: 10px;
+        max-height: 380px;
+        text-align: center;
         color: #222831;
-        font-style: italic;
+        transition: 500ms ease-in-out;
+    
+        &:hover {
+            transform: scale(1.05);
+        }
+    
+        &__img {
+            height: 200px;
+            width: 150px;
+            object-fit: contain;
+        }
+    
+        &__title {
+            color: #FFD369;
+            font-size: 1.1rem;
+        }
+    
+        &__tagline {
+            color: #222831;
+            font-style: italic;
+            font-size: .9rem;
+        }
     }
 }
+
+

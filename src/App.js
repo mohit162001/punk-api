@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
+import BeerInfo from './components/BeerInfo/BeerInfo';
 import BeersList from './components/BeersList/BeersList';
 import FiltersList from './components/FiltersList/FiltersList';
 import Header from './components/Header/Header';
@@ -54,14 +56,22 @@ function App() {
       });
 
   return (
-    <div className="App">
-        <Nav />
-        <Header />
-        <SearchBox handleInput={handleInput} searchTerm={searchTerm}/>
-        <FiltersList filterByABV={filterByABV} filterByPH={filterByPH} />
-        <BeersList beersArray={filterResults} />
-        
-    </div>
+    <Router>
+        <div className="App">
+            <Nav />
+            <Header />
+            <SearchBox handleInput={handleInput} searchTerm={searchTerm}/>
+            <FiltersList filterByABV={filterByABV} filterByPH={filterByPH} />
+            <Switch>
+                <Route path="/beerinfo/:id">
+                    {beersArray.length > 0 && <BeerInfo beersArray={beersArray}/>}
+                </Route>
+                <Route path="/">
+                    <BeersList beersArray={filterResults} />
+                </Route>
+            </Switch>
+        </div>
+    </Router>
   );
 }
 
