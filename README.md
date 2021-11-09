@@ -1,6 +1,6 @@
 # PUNK API
 
-![js-calculator](https://github.com/alexsp92/calculator/blob/main/js-calculator.png)
+![js-calculator](https://raw.githubusercontent.com/alessandrothedev/punk-api/main/Screenshot%202021-11-09%20at%2016.24.55.png)
 
 ## The Project :large_blue_diamond:
 A React JS app where users can browse the entire BrewDog beers catalogue.
