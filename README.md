@@ -4,6 +4,7 @@
 
 ## The Project :large_blue_diamond:
 A React JS app where users can browse the entire BrewDog beers catalogue.
+[Check out the Live Demo Here](https://alessandrothedev.github.io/punk-api/)
 
 The app was created by fetching Brewdog's Punk API and storing the object returned in a State. Users are able to search their favourite beers by name and/or filter the results by volume of alcohol, bitterness or acidity level.
 
