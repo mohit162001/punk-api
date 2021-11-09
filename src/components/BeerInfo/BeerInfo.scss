@@ -1,6 +1,20 @@
 @use "/src/scss/mixins" as *;
 @use "/src/scss/variables" as *;
 
+
+.beer-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5vh;
+
+    a, a:visited {
+        color: #FFD369;
+        font-weight: bold;
+    }
+}
+
 .beer-info {
     margin: 10vh auto;
     width: 50%;

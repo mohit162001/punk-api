@@ -60,13 +60,13 @@ function App() {
         <div className="App">
             <Nav />
             <Header />
-            <SearchBox handleInput={handleInput} searchTerm={searchTerm}/>
-            <FiltersList filterByABV={filterByABV} filterByPH={filterByPH} />
             <Switch>
                 <Route path="/beerinfo/:id">
                     {beersArray.length > 0 && <BeerInfo beersArray={beersArray}/>}
                 </Route>
                 <Route path="/">
+                    <SearchBox handleInput={handleInput} searchTerm={searchTerm}/>
+                    <FiltersList filterByABV={filterByABV} filterByPH={filterByPH} />
                     <BeersList beersArray={filterResults} />
                 </Route>
             </Switch>
